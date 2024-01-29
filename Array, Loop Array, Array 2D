@@ -1,0 +1,144 @@
+Array di C
+Array yang satu tidak dapat menerima elemen dari array yang lain.
+Array adalah struktur data yang menyimpan kumpulan nilai terkait yang semuanya bertipe sama.
+Array berguna karena dapat mewakili data terkait dengan satu nama deskriptif daripada menggunakan variabel terpisah yang masing-masing harus diberi nama secara unik.
+Misalnya, larik test_scores[25] dapat menampung 25 nilai ujian.
+Deklarasi array menyertakan tipe nilai yang disimpannya, pengenal, dan tanda kurung siku [ ] dengan angka yang menunjukkan ukuran array.
+Sebagai contoh:
+int test_scores[25]; /* An array size 25 */ 
+Anda juga dapat menginisialisasi array saat dideklarasikan, seperti dalam pernyataan berikut:
+float prices[5] = {3.2, 6.55}; 
+Perhatikan bahwa nilai awal dipisahkan dengan koma dan ditempatkan di dalam kurung kurawal {}.
+Array dapat diinisialisasi sebagian, seperti pada:
+float prices[5] = {3.2, 6.55, 10.49, 1.25, 0.99};
+Nilai yang hilang diatur ke 0.
+Array disimpan di lokasi memori yang berdekatan dan tidak dapat mengubah ukuran setelah dideklarasikan.
+
+Type in a code to declare an array of integers of size 4:
+int x [4]
+ = {1, 2, 3, 4};
+
+Mengakses Elemen Array
+Isi dari array disebut elemen dengan setiap elemen dapat diakses oleh nomor indeks.
+Di C, nomor indeks dimulai dari 0.
+Array dengan 5 elemen akan memiliki nomor indeks 0, 1, 2, 3, dan 4. Perhatikan array x:
+int x[5] = {20, 45, 16, 18, 22};
+Itu dapat dianggap sebagai:
+0 => [20]
+1 => [45]
+2 => [16]
+3 => [18]
+4 => [22]
+Untuk mengakses elemen array, lihat nomor indeksnya.
+Sebagai contoh:
+#include <stdio.h>
+int main() {
+    int x[5] = {20, 45, 16, 18, 22};
+    printf("The second element is %d\n", x[1]); /* 45 */     
+    return 0;
+}
+
+Nilai elemen array dapat diubah melalui pernyataan penugasan, yang juga memerlukan penggunaan nama array dan indeks:
+#include <stdio.h>
+int main() {  
+    int x[5] = {20, 45, 16, 18, 22};
+    x[1] = 260;
+    printf("The second element is %d\n", x[1]); /* 260 */   
+	  return 0;
+}
+Indeks array juga disebut sebagai subskrip.
+
+Mengakses array a[3] = {} akan menghasilkan output random dan nilainya terus berubah
+Mengakses array yang tidak berisikan apa-apa contoh dari f[] akan menghasilkan error.
+Mengakses array e[5] = {1} perluasannya adalah {1,0,0,0,0} yang diakses e[4] outputnya 0.
+Array b[5] = {1 2,3} isinya adalah {1,2,3,0,0}
+Dimensi array ke 2 array 2d harus eksplisit contoh int b[][3] 
+Misal a[0] = 1, Jika diakses dengan pointer *p saja akan menghasilkan 1. Diakses a[0] juga akan 1.
+a[5] = 1,2,3,4,5 jika diakses dengan p[0] = a[0] = 1, diakses dengan p[1] = a[1] = 2
+Jika yang diakses p saja, bukan *p, maka outputnya adalah alamat dari a bukan nilainya.
+Intinya jika mengakses &a, dsb pada output atau perintah lainnya akan menghasilkan alamat. Berbeda dengan scanf &d itu berfungsi memberikan alamat untuk dimasukkan input.
+
+Menggunakan Loop dengan Array
+Banyak algoritme memerlukan pengaksesan setiap elemen array untuk memeriksa data, menyimpan informasi, dan tugas lainnya. Ini dapat dilakukan dalam proses yang disebut melintasi array, yang sering diimplementasikan dengan loop for karena variabel kontrol loop secara alami sesuai dengan indeks array.
+Pertimbangkan program berikut:
+#include <stdio.h>
+int main()
+{
+  float purchases[3] = {10.99, 14.25, 90.50};
+  float total = 0;
+  int k;
+  /* total the purchases */
+  for (k = 0; k < 3; k++) {
+    total += purchases[k];
+  }
+  printf("Purchases total is %6.2f\n", total);
+  /* Output:  Purchases total is 115.74 */
+}
+
+Variabel kontrol loop beriterasi dari 0 hingga satu kurang dari jumlah elemen yang cocok dengan nilai indeks.
+Loop juga berguna untuk penugasan.
+Sebagai contoh:
+#include<stdio.h>
+int main()
+{
+  int a[10];
+  int k;
+  for (k = 0; k < 10; k++) {
+    a[k] = k * 10;
+    printf("%d ", a[k]);
+  }
+}
+
+Two-Dimensional Arrays
+Array Dua Dimensi
+Array dua dimensi adalah array array dan dapat dianggap sebagai tabel. Anda juga dapat menganggap larik dua dimensi sebagai kisi untuk merepresentasikan papan catur, blok kota, dan banyak lagi.
+Deklarasi array dua dimensi menunjukkan jumlah baris angka dan jumlah kolom.
+Sebagai contoh:
+int a[2][3]; /* A 2 x 3 array */
+Kurung kurawal bersarang digunakan untuk menginisialisasi elemen baris demi baris, seperti dalam pernyataan berikut:
+int a[2][3] = {
+    {3, 2, 6},
+  {4, 5, 20}
+};
+Pernyataan yang sama juga dapat berbentuk:
+int a[2][3] = { {3, 2, 6}, {4, 5, 20} }; 
+Pernyataan sebelumnya menawarkan lebih banyak kejelasan dengan memvisualisasikan struktur array.
+Array dapat memiliki lebih dari dua dimensi. Misalnya, a[5][3][4] adalah array yang memiliki 5 elemen yang masing-masing menyimpan 3 elemen yang masing-masing menyimpan 4 elemen. 
+
+How many elements can the following array hold?
+int arr[2][5];
+10 //10 Secara for
+
+Mengakses Array Dua Dimensi
+Untuk mengakses elemen array dua dimensi, diperlukan indeks baris dan indeks kolom.
+Misalnya, pernyataan berikut menampilkan nilai elemen dan kemudian menetapkan nilai baru:
+#include <stdio.h>
+int main() {
+    int a[2][3] = {
+        {3, 2, 6},
+        {4, 5, 20}
+    };
+    printf("Element 3 in row 2 is %d\n", a[1][2]); /* 20 */
+    a[1][2] = 25; 
+    printf("Element 3 in row 2 is %d\n", a[1][2]); /* 25 */
+	  return 0;
+}
+Sama seperti perulangan for yang digunakan untuk melakukan iterasi melalui larik satu dimensi, perulangan for bersarang digunakan untuk melintasi larik dua dimensi:
+
+#include <stdio.h>
+int a[2][3] = {
+  {3, 2, 6},
+  {4, 5, 20}
+};
+
+int main()
+{
+  int k, j;
+  /* display array contents */
+  for (k = 0; k < 2; k++) {
+    for (j = 0; j < 3; j++) {
+      printf(" %d", a[k][j]);
+    }
+    printf("\n");
+  }
+}
