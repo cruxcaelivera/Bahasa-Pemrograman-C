@@ -207,3 +207,77 @@ int main() {
   return 0;
 }
 // Outputs 8 (5 + 3)
+
+Recursive Functions
+Fungsi Rekursif
+Algoritma untuk memecahkan masalah mungkin paling baik diimplementasikan menggunakan proses yang disebut rekursi. 
+Perhatikan faktorial suatu bilangan, yang biasanya ditulis sebagai 5! = 5 * 4 * 3 * 2 * 1.
+Perhitungan ini juga dapat dianggap berulang kali menghitung num * (num -1) hingga num adalah 1.
+Fungsi rekursif adalah fungsi yang memanggil dirinya sendiri dan menyertakan kasus dasar, atau kondisi keluar, untuk mengakhiri panggilan rekursif. Dalam kasus menghitung faktorial, kasus dasar adalah num sama dengan 1.
+Sebagai contoh:
+#include <stdio.h>
+// deklarasi fungsi
+int faktorial(int num); //Argumen diteruskan ke parameter
+int main() {
+  int x = 5;
+  printf("Faktorial dari %d adalah %d\n", x, faktorial(x)); //Pernyataan pemanggilan fungsi
+  return 0;
+}
+// definisi fungsi
+int faktorial(int num) { //Parameter menerima nilai dari argumen berdasarkan posisi
+  //Mengambil int num = x = 5
+  if (num == 1) /* kasus dasar */
+    return (1); //Mengembalikan hasil fungsi ke pernyataan pemanggilan
+  else
+    return (num * faktorial (num - 1)); //Mengembalikan hasil fungsi ke pernyataan pemanggilan
+}
+Keluaran programnya adalah: Faktorial dari 5 adalah 120
+Rekursi bekerja dengan "menumpuk" panggilan hingga kasing dasar dieksekusi. Pada saat itu, panggilan diselesaikan dari terbaru ke terlama. Tumpukan panggilan faktorial dapat dianggap sebagai:
+2*faktorial(1)
+3*faktorial(2)
+4*faktorial(3)
+5*faktorial(4)
+Saat kasus dasar tercapai, nilai pengembalian 1 memicu penyelesaian panggilan bertumpuk. Nilai kembalian dari terbaru ke terlama membuat perhitungan berikut, dengan perhitungan akhir (5 * 24) dikembalikan ke fungsi pemanggilan main():
+5 * 4 * 3 * 2 * 1
+Solusi rekursif membutuhkan kasus dasar untuk mencegah loop tak terbatas.
+
+Pengulangan
+Rekursi adalah teknik membuat pemanggilan fungsi itu sendiri. Teknik ini menyediakan cara untuk memecah masalah rumit menjadi masalah sederhana yang lebih mudah dipecahkan.
+
+Rekursi mungkin agak sulit untuk dipahami. Cara terbaik untuk mengetahui cara kerjanya adalah dengan bereksperimen dengannya.
+
+Contoh Rekursi
+Menjumlahkan dua angka mudah dilakukan, tetapi menambahkan rentang angka lebih rumit. Dalam contoh berikut, rekursi digunakan untuk menjumlahkan rentang angka bersama-sama dengan memecahnya menjadi tugas sederhana menjumlahkan dua angka:
+
+Contoh
+#include <stdio.h>
+int sum(int k);
+
+int main() {
+  int k;
+  int result = sum(10);
+  printf("%d", result);
+  return 0;
+}
+
+int sum(int k) {
+  //int k = 10 
+  if (k > 0) {
+    return k + sum(k - 1);
+  } else {
+    return 0;
+  }
+}
+
+Contoh Dijelaskan
+Saat fungsi sum() dipanggil, ia menambahkan parameter k ke jumlah semua angka yang lebih kecil dari k dan mengembalikan hasilnya. Saat k menjadi 0, fungsi hanya mengembalikan 0. Saat dijalankan, program mengikuti langkah-langkah berikut:
+
+10 + sum(9)
+10 + ( 9 + sum(8) )
+10 + ( 9 + ( 8 + sum(7) ) )
+...
+10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 + sum(0)
+10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 + 0
+Karena fungsi tidak memanggil dirinya sendiri ketika k adalah 0, program berhenti di situ dan mengembalikan hasilnya.
+
+Pengembang harus sangat berhati-hati dengan rekursi karena dapat dengan mudah menyelinap ke dalam penulisan fungsi yang tidak pernah berakhir, atau fungsi yang menggunakan memori atau daya prosesor dalam jumlah berlebih. Namun, ketika ditulis dengan benar, rekursi dapat menjadi pendekatan pemrograman yang sangat efisien dan elegan secara matematis.
