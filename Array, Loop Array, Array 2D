@@ -58,6 +58,17 @@ a[5] = 1,2,3,4,5 jika diakses dengan p[0] = a[0] = 1, diakses dengan p[1] = a[1]
 Jika yang diakses p saja, bukan *p, maka outputnya adalah alamat dari a bukan nilainya.
 Intinya jika mengakses &a, dsb pada output atau perintah lainnya akan menghasilkan alamat. Berbeda dengan scanf &d itu berfungsi memberikan alamat untuk dimasukkan input.
 
+
+Mengakses array a[3] = {} akan menghasilkan output random dan nilainya terus berubah
+Mengakses array yang tidak berisikan apa-apa contoh dari f[] akan menghasilkan error.
+Mengakses array e[5] = {1} perluasannya adalah {1,0,0,0,0} yang diakses e[4] outputnya 0.
+Array b[5] = {1 2,3} isinya adalah {1,2,3,0,0}
+Dimensi array ke 2 array 2d harus eksplisit contoh int b[][3] 
+Misal a[0] = 1, Jika diakses dengan pointer *p saja akan menghasilkan 1. Diakses a[0] juga akan 1.
+a[5] = 1,2,3,4,5 jika diakses dengan p[0] = a[0] = 1, diakses dengan p[1] = a[1] = 2
+Jika yang diakses p saja, bukan *p, maka outputnya adalah alamat dari a bukan nilainya.
+Intinya jika mengakses &a, dsb pada output atau perintah lainnya akan menghasilkan alamat. Berbeda dengan scanf &d itu berfungsi memberikan alamat untuk dimasukkan input.
+
 Menggunakan Loop dengan Array
 Banyak algoritme memerlukan pengaksesan setiap elemen array untuk memeriksa data, menyimpan informasi, dan tugas lainnya. Ini dapat dilakukan dalam proses yang disebut melintasi array, yang sering diimplementasikan dengan loop for karena variabel kontrol loop secara alami sesuai dengan indeks array.
 Pertimbangkan program berikut:
