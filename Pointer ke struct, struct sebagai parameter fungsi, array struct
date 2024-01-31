@@ -1,0 +1,189 @@
+Pointer ke Struktur
+Sama seperti pointer ke variabel, pointer ke struktur juga dapat didefinisikan.
+struct myStruct *struct_ptr; //Sebagai parameter dalam fungsi
+mendefinisikan pointer ke struktur myStruct. //Deklarasi pointer cara 1
+struct_ptr = &struct_var;
+menyimpan alamat variabel struktur struct_var di pointer struct_ptr. //Deklarasi pointer cara 1
+struct_ptr -> struct_mem;
+mengakses nilai anggota struktur struct_mem.
+Sebagai contoh:
+#include <stdio.h>
+#include <string.h>
+// Student Structure Definition
+struct student{
+    char name[50];
+    int number;
+    int age;
+};
+
+// Pointer ke struct sebagai parameter fungsi
+void showStudentData(struct student *st) {
+    //struct student *st = &struct student st1 = Mengakses semua nilai anggota struct st1
+    //Struct student *st = &struct student st2 = Mengakses semua nilai anggota struct st2
+    printf("\nStudent:\n");
+    printf("Name: %s\n", st->name); //Mengakses nilai anggota struct yang lebih spesifik, yaitu "Name"
+    printf("Number: %d\n", st->number); //Mengakses nilai anggota struct yang lebih spesifik, yaitu "Number"
+    printf("Age: %d\n", st->age); //Mengakses nilai anggota struct yang lebih spesifik, yaitu "Name"
+    //Mengapa output keduanya? karena kesamaan struct yang digunakan, yaitu struct student
+}
+
+int main() {
+    // New Student Record Creation
+    struct student st1;
+    struct student st2;
+    
+    // Filling Student 1 Details
+    strcpy(st1.name, "Krishna");
+    //st1.name = "Krishna"
+    st1.number = 5;
+    //Mengakses anggota struct "Number" dan menginisialisasi dengan nilai = 5
+    st1.age = 21;
+    //Mengakses anggota struct "Age" dan menginisialisasi dengan nilai = 21
+    
+    // Filling Student 2 Details
+    strcpy(st2.name, "Max");
+    //st2.name = "Max"
+    st2.number = 9;
+    //Mengakses anggota struct "Number" dan menginisialisasi dengan nilai = 9
+    st2.age = 15;
+    //Mengakses anggota struct "Age" dan menginisialisasi dengan nilai = 15
+    
+    // Displaying Student 1 Details
+    showStudentData(&st1);
+    //Struct student *st = &struct student st1 = Mengakses semua nilai anggota struct st1
+
+    // Displaying Student 2 Details
+    showStudentData(&st2);
+    //Struct student *st = &struct student st2 = Mengakses semua nilai anggota struct st2
+    
+    return 0;
+}
+The -> operator memungkinkan untuk mengakses anggota struct melalui pointer.
+(*st).age sama dengan st->age.
+//Struct student *st = &struct student st1 = Mengakses semua nilai anggota struct st1
+cont: .age mengakses anggota struct yang lebih spesifik
+Juga, ketika typedef telah digunakan untuk menamai struct, maka pointer dideklarasikan hanya menggunakan nama typedef bersama dengan * dan nama pointer.
+#include <stdio.h>
+#include <string.h>
+// Student Structure Definition
+struct student{
+    char name[50];
+    int number;
+    int age;
+};
+
+// Pointer ke struct sebagai parameter fungsi
+void showStudentData(struct student *st) {
+    //struct student *st.age, struct student *st.number, struct student *st. age. Mengakses semua nilai anggota struct student dengan variabel baru st1
+    //Struct student *st.age, struct student *st.number, struct student *st.age. Mengakses semua nilai anggota struct student dengan variabel baru st2
+    printf("\nStudent:\n");
+    printf("Name: %s\n", st->name); //Mengakses nilai anggota struct yang lebih spesifik, yaitu "Name"
+    printf("Number: %d\n", st->number); //Mengakses nilai anggota struct yang lebih spesifik, yaitu "Number"
+    printf("Age: %d\n", st->age); //Mengakses nilai anggota struct yang lebih spesifik, yaitu "Name"
+    //Mengapa output keduanya? karena kesamaan struct yang digunakan, yaitu struct student
+}
+
+int main() {
+    // New Student Record Creation
+    struct student st1;
+    struct student st2;
+    
+    // Filling Student 1 Details
+    strcpy(st1.name, "Krishna");
+    //st1.name = "Krishna"
+    st1.number = 5;
+    //Mengakses anggota struct "Number" dan menginisialisasi dengan nilai = 5
+    st1.age = 21;
+    //Mengakses anggota struct "Age" dan menginisialisasi dengan nilai = 21
+    
+    // Filling Student 2 Details
+    strcpy(st2.name, "Max");
+    //st2.name = "Max"
+    st2.number = 9;
+    //Mengakses anggota struct "Number" dan menginisialisasi dengan nilai = 9
+    st2.age = 15;
+    //Mengakses anggota struct "Age" dan menginisialisasi dengan nilai = 15
+    
+    // Displaying Student 1 Details
+    showStudentData(&st1);
+    //Struct student *st = &struct student st1 = Mengakses semua nilai anggota struct st1
+
+    // Displaying Student 2 Details
+    showStudentData(&st2);
+    //Struct student *st = &struct student st2 = Mengakses semua nilai anggota struct st2
+    
+    return 0;
+}
+
+Struktur sebagai Parameter Fungsi
+Suatu fungsi dapat memiliki parameter struktur yang menerima argumen berdasarkan nilai ketika hanya menyelesaikan variabel struktur yang diperlukan.
+Untuk fungsi mengubah nilai aktual dalam variabel struct, diperlukan parameter pointer.
+Sebagai contoh:
+#include <stdio.h>
+#include <string.h>
+typedef struct {
+    int id;
+    char title[40];
+    float hours; 
+} course;
+
+void update_course(course *class); //Mengakses semua nilai anggota struct student dengan variabel baru class
+void display_course(course class); 
+
+int main() {
+    course cs2;
+    update_course(&cs2);
+    display_course(cs2);
+    return 0;
+}
+
+void update_course(course *class) {
+    //Mengakses semua nilai anggota struct student dengan variabel baru class
+    //Pointer struktur class mengakses semua nilai anggota struct cs2 berdasarkan alamat
+    strcpy(class->title, "C++ Fundamentals"); //Mengakses nilai anggota struct yang lebih spesifik, yaitu "title" lalu diinisialisasi string = "C++ Fundamentals"
+    class->id = 111; //Mengakses nilai anggota struct yang lebih spesifik, yaitu "id"
+    class->hours = 12.30; //Mengakses nilai anggota struct yang lebih spesifik, yaitu "hours"
+}
+
+void display_course(course class) { //Cara yang sama selain menggunakan pointer ke struct.
+    //course class = cs2 
+    //Struktur class mengakses semua nilai anggota struct cs2
+    printf("%d\t%s\t%3.2f\n", class.id, class.title, class.hours); //Cara yang sama, bedanya hanya pengaksesan menggunakan .
+} 
+
+Seperti yang Anda lihat, update_course() mengambil pointer sebagai parameter, sedangkan display_course() mengambil struktur berdasarkan nilai.
+
+For a function to change the actual values in a struct variable:
+Pointer parameters are required
+
+Struktur Array
+Array dapat menyimpan elemen dari tipe data apa pun, termasuk struktur.
+Setelah mendeklarasikan array struktur, sebuah elemen dapat diakses dengan nomor indeks.
+Operator titik kemudian digunakan untuk mengakses anggota elemen, seperti pada program:
+#include <stdio.h>
+typedef struct {
+  int h;
+  int w;
+  int l;
+} box;
+int main() {
+  box boxes[3] = {{2, 6, 8}, {4, 6, 6}, {2, 6, 9}}; //Array boxes dengan tipe data box, elemennya dapat diakses dengan nomor indeks seperti array pada biasanya 
+  //Mengapa kurung kurawal ganda? Karena dalam inisialisasi nilai struct membutuhkan kurung kurawal untuk setiap anggotanya begitujuga ketika menginisialisasi nilai elemen-elemen suatu array sehingga untuk index 0 memiliki nilai {2, 6, 8}, dst yang akan diinisialisasi ke dalam anggota struct.
+  int k, volume;
+  
+  for (k = 0; k < 3; k++) {
+    volume = boxes[k].h*boxes[k].w*boxes[k].l;
+    //boxes[0].h, boxes[0].k, boxes[0].l, boxes = mengakses anggota struct box pada boxes, [0] = diinisialisasi nilai indeks 0, yaitu {2, 6, 8}, mengakses anggota struct int h = 2, int w = 6, int l = 8.
+    //boxes[1].h, boxes[1].k, boxes[1].l, boxes = mengakses anggota struct box pada boxes, [1] = diinisialisasi nilai indeks 1, yaitu {4, 6, 6}, mengakses anggota struct int h = 4, int w = 6, int l = 6.
+    //boxes[2].h, boxes[2].k, boxes[2].l, boxes = mengakses anggota struct box pada boxes, [2] = diinisialisasi nilai indeks 2, yaitu {2, 6, 9}, mengakses anggota struct int h = 2, int w = 6, int l = 9.
+    printf("box %d volume %d\n", k, volume);
+    //K = 0 
+    //box 0 volume 2*6*8
+    //box 1 volume 4*6*6
+    //box 2 volume 2*6*9
+    printf("box %d volume %d\n", k, volume);
+  }
+  return 0;
+}
+
+Array struktur digunakan untuk struktur data seperti daftar tertaut, pohon biner, dan lainnya.
